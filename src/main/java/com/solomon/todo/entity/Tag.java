@@ -15,7 +15,14 @@ public class Tag {
     @Column(unique = true, nullable = false, updatable = false, length = NAME_LENGHT)
     private String name;
 
-    @ManyToMany(mappedBy = "tags")
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(name = "tag_records",
+            joinColumns = @JoinColumn(name = "tag_id"),
+            inverseJoinColumns = @JoinColumn(name = "records_id")
+    )
     private List<Record> records;
 
     public List<Record> getRecords() {

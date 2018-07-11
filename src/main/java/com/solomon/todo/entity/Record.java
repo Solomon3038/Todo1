@@ -27,8 +27,8 @@ public class Record {
     private LocalDateTime createDate;
     @Column(length = TEXT_LENGTH, updatable = false, nullable = false)
     private String text;
-    @ManyToMany(cascade = CascadeType.ALL )
-    @JoinColumn(name = "records")
+
+    @ManyToMany(mappedBy = "records")
     private List<Tag> tags;
 
 
