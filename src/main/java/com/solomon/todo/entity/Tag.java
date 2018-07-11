@@ -1,6 +1,8 @@
 package com.solomon.todo.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "tags")
@@ -11,8 +13,19 @@ public class Tag {
 
     @Id
     @Column(unique = true, nullable = false, updatable = false, length = NAME_LENGHT)
-    @ManyToMany
     private String name;
+
+    @ManyToMany(mappedBy = "tags")
+    private List<Record> records;
+
+    public List<Record> getRecords() {
+        return records;
+    }
+
+    public Tag setRecords(List<Record> records) {
+       this.records = records;
+       return this;
+    }
 
     public String getName() {
         return name;
