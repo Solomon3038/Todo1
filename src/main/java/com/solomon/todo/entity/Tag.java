@@ -1,7 +1,6 @@
 package com.solomon.todo.entity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,9 +19,8 @@ public class Tag {
             CascadeType.MERGE
     })
     @JoinTable(name = "tag_records",
-            joinColumns = @JoinColumn(name = "tag_id"),
-            inverseJoinColumns = @JoinColumn(name = "records_id")
-    )
+            joinColumns = @JoinColumn(name = "name"),
+            inverseJoinColumns = @JoinColumn(name = "id"))
     private List<Record> records;
 
     public List<Record> getRecords() {
@@ -30,8 +28,8 @@ public class Tag {
     }
 
     public Tag setRecords(List<Record> records) {
-       this.records = records;
-       return this;
+        this.records = records;
+        return this;
     }
 
     public String getName() {
