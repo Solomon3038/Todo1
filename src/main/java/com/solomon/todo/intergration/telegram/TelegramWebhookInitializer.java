@@ -35,6 +35,9 @@ public class TelegramWebhookInitializer implements ApplicationListener<ServletWe
 
     @Override
     public void onApplicationEvent(ServletWebServerInitializedEvent event) {
+        if (webhookHost == null) {
+            return;
+        }
         String uri = UriComponentsBuilder.fromUri(webhookHost).pathSegment(path).build().toString();
         SetWebhook request = new SetWebhook().url(uri);
         BaseResponse response = bot.execute(request);
