@@ -4,6 +4,7 @@ import com.pengrad.telegrambot.model.Update;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import static org.springframework.http.ResponseEntity.ok;
@@ -13,7 +14,7 @@ import static org.springframework.http.ResponseEntity.ok;
 public class TelegramUpdateController {
 
     @PostMapping("${telegram.webhook.path}")
-    public ResponseEntity getUpdate(Update update) {
+    public ResponseEntity getUpdate(@RequestBody Update update) {
         log.info(update.toString());
         return ok().build();
     }
