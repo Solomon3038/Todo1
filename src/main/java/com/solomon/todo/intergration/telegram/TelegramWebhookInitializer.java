@@ -4,6 +4,7 @@ import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.request.SetWebhook;
 import com.pengrad.telegrambot.response.BaseResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.context.ServletWebServerInitializedEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
@@ -20,6 +21,9 @@ public class TelegramWebhookInitializer implements ApplicationListener<ServletWe
 
     private WebApplicationContext ctx;
 
+    @Value("${address}")
+    private String address;
+
     public void setWebhook() {
 
         SetWebhook request = new SetWebhook();
@@ -30,8 +34,7 @@ public class TelegramWebhookInitializer implements ApplicationListener<ServletWe
     public void onApplicationEvent(ServletWebServerInitializedEvent event) {
         try {
             InetAddress localHost = InetAddress.getLocalHost();
-            log.info("HostName: {}", localHost.getCanonicalHostName());
-            log.info("{}, {}", localHost.getHostAddress(), localHost.getHostName());
+            log.info("HostName: {}", address);
         } catch (UnknownHostException e) {
             log.error(e.getMessage(), e);
         }
