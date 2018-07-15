@@ -6,9 +6,14 @@
       "description": "Token of telegram bot."
     },
     {
-      "name": "telegram.someelse",
-      "type": "java.lang.Integer",
-      "description": "Описание свойства."
+      "name": "telegram.webhook.host",
+      "type": "java.net.URI",
+      "description": "Description for telegram.webhook.host."
+    },
+    {
+      "name": "telegram.webhook.path",
+      "type": "java.lang.String",
+      "description": "Description for telegram.webhook.path."
     }
   ]
 }

@@ -9,9 +9,9 @@ import org.springframework.boot.web.servlet.context.ServletWebServerInitializedE
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.util.UriComponentsBuilder;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
+import java.net.URI;
 
 @Component
 @Slf4j
@@ -21,22 +21,22 @@ public class TelegramWebhookInitializer implements ApplicationListener<ServletWe
 
     private WebApplicationContext ctx;
 
-    @Value("${address}")
-    private String address;
+    @Value("${telegram.webhook.host}")
+    private URI webhookHost;
+
+    @Value("${telegram.webhook.path}")
+    private String path;
 
     public void setWebhook() {
 
-        SetWebhook request = new SetWebhook();
-        BaseResponse response = bot.execute(request);
+
     }
 
     @Override
     public void onApplicationEvent(ServletWebServerInitializedEvent event) {
-        try {
-            InetAddress localHost = InetAddress.getLocalHost();
-            log.info("HostName: {}", address);
-        } catch (UnknownHostException e) {
-            log.error(e.getMessage(), e);
-        }
+        String  uri = UriComponentsBuilder.fromUri(webhookHost).pathSegment(path).build().toString();
+        SetWebhook request = new SetWebhook().url(uri);
+        BaseResponse response = bot.execute(request);
+        log.info("URL: {}, Response {}", uri, response);
     }
 }

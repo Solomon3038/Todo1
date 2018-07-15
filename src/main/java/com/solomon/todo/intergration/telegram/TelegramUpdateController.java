@@ -12,7 +12,7 @@ import static org.springframework.http.ResponseEntity.ok;
 @Slf4j
 public class TelegramUpdateController {
 
-    @PostMapping("/telegram/update")
+    @PostMapping("${telegram.webhook.path}")
     public ResponseEntity getUpdate(Update update) {
         log.info(update.toString());
         return ok().build();
