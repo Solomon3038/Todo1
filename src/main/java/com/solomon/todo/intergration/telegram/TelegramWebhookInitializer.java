@@ -4,6 +4,7 @@ import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.request.SetWebhook;
 import com.pengrad.telegrambot.response.BaseResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.context.ServletWebServerInitializedEvent;
 import org.springframework.context.ApplicationListener;
@@ -17,6 +18,7 @@ import java.net.URI;
 @Slf4j
 public class TelegramWebhookInitializer implements ApplicationListener<ServletWebServerInitializedEvent> {
 
+    @Autowired
     private TelegramBot bot;
 
     private WebApplicationContext ctx;
