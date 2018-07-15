@@ -30,7 +30,8 @@ public class TelegramWebhookInitializer implements ApplicationListener<ServletWe
     public void onApplicationEvent(ServletWebServerInitializedEvent event) {
         try {
             InetAddress localHost = InetAddress.getLocalHost();
-            log.info("HostName: {}", localHost);
+            log.info("HostName: {}", localHost.getCanonicalHostName());
+            log.info("{}, {}", localHost.getHostAddress(), localHost.getHostName());
         } catch (UnknownHostException e) {
             log.error(e.getMessage(), e);
         }
