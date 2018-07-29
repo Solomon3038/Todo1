@@ -16,8 +16,7 @@ public class Tag {
     private String name;
 
     @ManyToMany(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
+            CascadeType.ALL
     })
     @JoinTable(name = "tag_records",
             joinColumns = @JoinColumn(name = "name"),

@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.UUID;
 
-import static javax.persistence.CascadeType.PERSIST;
+import static javax.persistence.CascadeType.ALL;
 
 @Getter
 @Setter
@@ -30,7 +30,7 @@ public class Record {
     @Column(length = TEXT_LENGTH, updatable = false, nullable = false)
     private String text;
 
-    @ManyToMany(mappedBy = "records", cascade = PERSIST)
+    @ManyToMany(mappedBy = "records", cascade = ALL)
     private Set<Tag> tags;
 
 
