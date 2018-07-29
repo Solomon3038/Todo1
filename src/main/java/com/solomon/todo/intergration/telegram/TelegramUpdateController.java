@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.core.ResolvableType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,5 +42,11 @@ public class TelegramUpdateController {
                 .map(name -> beanFactory.getBean(name, CommandHandler.class))
                 .forEach(handler -> handler.handle(command));
         return ok().build();
+    }
+
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity handleException(Exception ex) {
+        return ResponseEntity.ok().build();
     }
 }
