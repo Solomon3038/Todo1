@@ -20,7 +20,7 @@ public class SaveRecordCommandHandler implements CommandHandler<SaveRecordComman
 
     @Override
     public void handle(SaveRecordCommand command) {
-        log.info("Hanle command {}", command);
+        log.info("Handle command {}", command);
         Record record = new Record()
                 .setId(UUID.randomUUID())
                 .setText(command.getMessage())

@@ -5,6 +5,7 @@ import com.solomon.todo.entity.Tag;
 import com.solomon.todo.intergration.telegram.command.SaveRecordCommand;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -21,6 +22,7 @@ public class SaveRecordCommandConverter implements CommandConverter<SaveRecordCo
                 .builder()
                 .message(extractText(message))
                 .tags(extractTags(message))
+                .createdDate(LocalDateTime.now())
                 .build();
     }
 
