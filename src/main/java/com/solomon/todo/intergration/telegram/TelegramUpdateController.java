@@ -34,7 +34,8 @@ public class TelegramUpdateController {
     public ResponseEntity getUpdate(@RequestBody Update update) {
         log.info(update.toString());
         Command command = commandConverter.convert(update);
-        ResolvableType commandHandlerType = forClassWithGenerics(CommandHandler.class, command.getClass());
+        Class<?> resultType = ResolvableType.forClass(Command.class, command.getClass()).resolveGeneric(0);
+        ResolvableType commandHandlerType = forClassWithGenerics(CommandHandler.class, resultType, command.getClass());
         String[] commandHandlerBeanNames = beanFactory.getBeanNamesForType(commandHandlerType);
         // FIXME: 29/07/18 стрим по идеи должен содержать ответы от CommandHandler'ов
         Stream

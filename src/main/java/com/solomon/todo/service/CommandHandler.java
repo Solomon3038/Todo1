@@ -2,8 +2,7 @@ package com.solomon.todo.service;
 
 import com.solomon.todo.intergration.telegram.command.Command;
 
-public interface CommandHandler<C extends Command> {
+public interface CommandHandler<R, C extends Command<R>> {
 
-    // TODO: 29/07/18 заменить void на выходные сообщения
-    void handle(C command);
+    R handle(C command);
 }

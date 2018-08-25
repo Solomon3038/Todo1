@@ -10,7 +10,7 @@ import java.util.UUID;
 
 @Service
 @Slf4j
-public class SaveRecordCommandHandler implements CommandHandler<SaveRecordCommand> {
+public class SaveRecordCommandHandler implements CommandHandler<Record, SaveRecordCommand> {
 
     private final RecordRepository recordRepository;
 
@@ -19,13 +19,13 @@ public class SaveRecordCommandHandler implements CommandHandler<SaveRecordComman
     }
 
     @Override
-    public void handle(SaveRecordCommand command) {
+    public Record handle(SaveRecordCommand command) {
         log.info("Handle command {}", command);
         Record record = new Record()
                 .setId(UUID.randomUUID())
                 .setText(command.getMessage())
                 .setTags(command.getTags())
                 .setCreateDate(command.getCreatedDate());
-        recordRepository.save(record);
+        return recordRepository.save(record);
     }
 }
