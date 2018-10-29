@@ -8,9 +8,10 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 import java.util.UUID;
 
-public interface RecordRepository extends JpaRepository<Record, UUID> {
+public interface  RecordRepository extends JpaRepository<Record, UUID> {
 
-    @Query("select r from #{#entityName} r where r.tags.name in (:tags)")
+    @Query("select r from #{#entityName} r where r.tags.name in (:tags)") //  mozhno s sql napisat с параметром @nativeQuery
+
     List<Record> findByTags(@Param("tags") List<String> tags);
 
 }

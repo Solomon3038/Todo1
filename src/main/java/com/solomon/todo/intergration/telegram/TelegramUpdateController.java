@@ -22,7 +22,7 @@ import static org.springframework.http.ResponseEntity.ok;
 @Slf4j
 public class TelegramUpdateController {
 
-    private final ListableBeanFactory beanFactory;
+    private final ListableBeanFactory beanFactory;// raznye imena odnogo tipa mozhet dostovat
     private final CommandConverter<Command> commandConverter;
 
     public TelegramUpdateController(ListableBeanFactory beanFactory, CommandConverter<Command> commandConverter) {

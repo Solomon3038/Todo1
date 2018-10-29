@@ -8,7 +8,7 @@ import java.util.Objects;
 @Table(name = "tags")
 public class Tag {
 
-    public static final String PREFIX = "#";
+
     public static final int NAME_LENGHT = 15;
 
     @Id
@@ -48,10 +48,7 @@ public class Tag {
         return this;
     }
 
-    @Override
-    public String toString() {
-        return PREFIX + getName();
-    }
+
 
     @Override
     public boolean equals(Object o) {
